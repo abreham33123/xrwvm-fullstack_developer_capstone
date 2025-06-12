@@ -1,13 +1,19 @@
-# from django.contrib import admin
-# from .models import related models
+from django.contrib import admin
+from .models import CarMake, CarModel  # Fixed import statement
 
+class CarModelInline(admin.StackedInline):  # Fixed class name and capitalization
+    model = CarModel
+    extra = 1  # Number of empty forms to display
 
-# Register your models here.
+class CarMakeAdmin(admin.ModelAdmin):
+    inlines = [CarModelInline]  # Fixed variable name (lowercase 'l')
+    list_display = ('name', 'founded_year', 'headquarters')  
+    search_fields = ['name']
 
-# CarModelInline class
+class CarModelAdmin(admin.ModelAdmin):
+    list_display = ('name', 'car_make', 'type', 'year')  
+    list_filter = ('car_make', 'type', 'year')  
+    search_fields = ['name', 'car_make__name']  
 
-# CarModelAdmin class
-
-# CarMakeAdmin class with CarModelInline
-
-# Register models here
+admin.site.register(CarMake, CarMakeAdmin)
+admin.site.register(CarModel, CarModelAdmin)
