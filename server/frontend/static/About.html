@@ -1,13 +1,79 @@
 <html>
 <head>
-  <!-- Link the style sheet here -->
   <link rel="stylesheet" href="/static/style.css">
   <link rel="stylesheet" href="/static/bootstrap.min.css">
+  <style>
+    .mission-box {
+      background-color: #f8f9fa;
+      border-left: 5px solid darkturquoise;
+      padding: 20px;
+      margin-bottom: 30px;
+    }
+    .values-list {
+      columns: 2;
+      -webkit-columns: 2;
+      -moz-columns: 2;
+    }
+    .team-member {
+      transition: transform 0.3s;
+    }
+    .team-member:hover {
+      transform: translateY(-5px);
+    }
+    .history-timeline {
+      position: relative;
+      padding-left: 30px;
+      margin-bottom: 30px;
+    }
+    .history-timeline::before {
+      content: '';
+      position: absolute;
+      left: 10px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: darkturquoise;
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 20px;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -30px;
+      top: 5px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: darkturquoise;
+    }
+    /* New footer styles */
+    .site-footer {
+      background-color: #343a40;
+      color: white;
+      padding: 3rem 0;
+      margin-top: 4rem;
+    }
+    .footer-links a {
+      color: #adb5bd;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .footer-links a:hover {
+      color: darkturquoise;
+    }
+    .footer-bottom {
+      border-top: 1px solid #495057;
+      padding-top: 1.5rem;
+      margin-top: 2rem;
+    }
+  </style>
 </head>
 <div>
   <nav class="navbar navbar-expand-lg navbar-light" style="background-color:darkturquoise; height: 1in;">
     <div class="container-fluid">
-      <h2 style="padding-right: 5%;">Dealerships</h2>
+      <h2 style="padding-right: 5%;">AutoReview</h2>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -27,46 +93,191 @@
     </div>
   </nav>
   
-    <div class="card" style="width: 80%;margin: auto; margin-top:5%;">
-      <div class="banner" name="about-header">
-      <!-- Insert header information here -->
-        <h1>About Us</h1>
-        Welcome to Best Cars dealership, home to the best cars in North America. We deal in sale of domestic and imported cars at reasonable prices.
+  <div class="container mt-5">
+    <div class="banner text-center mb-5">
+      <h1>About AutoReview</h1>
+      <p class="lead">Your trusted partner in automotive dealership reviews and consumer advocacy</p>
+    </div>
+
+    <div class="row mb-5">
+      <div class="col-md-6">
+        <h2>Our Story</h2>
+        <p>Founded in 2015, AutoReview began as a small team of automotive enthusiasts frustrated by the lack of transparent information about dealership experiences. What started as a passion project has grown into the most comprehensive dealership review platform in North America.</p>
+        
+        <div class="history-timeline">
+          <div class="timeline-item">
+            <h5>2015</h5>
+            <p>AutoReview founded with first 50 dealership reviews</p>
+          </div>
+          <div class="timeline-item">
+            <h5>2018</h5>
+            <p>Reached 10,000 verified customer reviews</p>
+          </div>
+          <div class="timeline-item">
+            <h5>2020</h5>
+            <p>Launched our Dealer Certification Program</p>
+          </div>
+          <div class="timeline-item">
+            <h5>2023</h5>
+            <p>Expanded coverage to all 50 states</p>
+          </div>
+        </div>
       </div>
-      <div style="display: flex;flex-direction: row; margin:auto">
-      <div class="card" style="width: 30%;">
-        <img class="card-img-top" src="/static/person.png" alt="Card image">
-        <div class="card-body">
-          <p class="title">Person1</p>
-          <p>Person1 Title</p>
-          <p class="card-text">Some text that explains the person1 in about 2 short sentences</p>
-          <p>person1@example.com</p>
+      <div class="col-md-6">
+        <img src="/static/team-photo.jpg" alt="AutoReview team" class="img-fluid rounded">
+      </div>
+    </div>
+
+    <div class="mission-box mb-5">
+      <h2>Our Mission</h2>
+      <p>To empower car buyers with transparent, unbiased information about dealership experiences while helping reputable dealers showcase their commitment to customer satisfaction.</p>
+    </div>
+
+    <div class="row mb-5">
+      <div class="col-md-6">
+        <h2>What We Do</h2>
+        <ul>
+          <li>Collect and verify customer reviews of dealership experiences</li>
+          <li>Conduct secret shopper evaluations</li>
+          <li>Rate dealerships on pricing transparency, customer service, and facility quality</li>
+          <li>Recognize top-performing dealers with our Certified Excellence awards</li>
+          <li>Provide educational resources for car buyers</li>
+        </ul>
+      </div>
+      <div class="col-md-6">
+        <h2>Our Values</h2>
+        <div class="values-list">
+          <ul>
+            <li><strong>Integrity:</strong> We never accept payment for positive reviews</li>
+            <li><strong>Accuracy:</strong> Every review is verified before publication</li>
+            <li><strong>Transparency:</strong> Our rating criteria are publicly available</li>
+            <li><strong>Fairness:</strong> Dealers can respond to all reviews</li>
+            <li><strong>Innovation:</strong> Constantly improving our evaluation methods</li>
+            <li><strong>Advocacy:</strong> We stand with consumers</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mb-4">
+      <h2>Meet Our Leadership Team</h2>
+      <p class="lead">The passionate professionals behind AutoReview</p>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card team-member h-100">
+          <img class="card-img-top" src="/static/abreham.jpg" alt="Abreham">
+          <div class="card-body">
+            <h4 class="card-title">Abreham</h4>
+            <h6 class="card-subtitle mb-2 text-muted">CEO & Founder</h6>
+            <p class="card-text">With 15+ years in automotive retail and consulting, Abreham founded AutoReview to bring transparency to car buying. His leadership has guided our growth while maintaining our commitment to unbiased reviews.</p>
+            <p class="card-text"><small class="text-muted">"Honest information should never be a luxury"</small></p>
+            <p class="card-text">abreham@autoreview.com</p>
+          </div>
         </div>
       </div>
 
-      <div class="card" style="width: 30%;">
-        <img class="card-img-top" src="/static/person.png" alt="Card image">
-        <div class="card-body">
-          <p class="title">Person2</p>
-          <p>Person2 Title</p>
-          <p class="card-text">Some text that explains the person2 in about 2 short sentences</p>
-          <p>person2@example.com</p>
+      <div class="col-md-4">
+        <div class="card team-member h-100">
+          <img class="card-img-top" src="/static/dawit.jpg" alt="Dawit">
+          <div class="card-body">
+            <h4 class="card-title">Dawit</h4>
+            <h6 class="card-subtitle mb-2 text-muted">Lead Automotive Analyst</h6>
+            <p class="card-text">Former service manager and ASE-certified technician, Dawit brings technical expertise to our evaluation criteria. He developed our 200-point inspection protocol for dealership assessments.</p>
+            <p class="card-text"><small class="text-muted">"The details tell the real story"</small></p>
+            <p class="card-text">dawit@autoreview.com</p>
+          </div>
         </div>
       </div>
 
-      <div class="card" style="width: 30%;">
-        <img class="card-img-top" src="/static/person.png" alt="Card image">
-        <div class="card-body">
-          <p class="title">Person3</p>
-          <p>Person3 Title</p>
-          <p class="card-text">Some text that explains the person3 in about 2 short sentences</p>
-          <p>person3@example.com</p>
+      <div class="col-md-4">
+        <div class="card team-member h-100">
+          <img class="card-img-top" src="/static/solomon.jpg" alt="Solomon">
+          <div class="card-body">
+            <h4 class="card-title">Solomon</h4>
+            <h6 class="card-subtitle mb-2 text-muted">Customer Experience Director</h6>
+            <p class="card-text">With a background in consumer psychology and market research, Solomon ensures our reviews capture the complete customer journey from first contact to post-purchase follow-up.</p>
+            <p class="card-text"><small class="text-muted">"Every interaction shapes the experience"</small></p>
+            <p class="card-text">solomon@autoreview.com</p>
+          </div>
         </div>
       </div>
     </div>
+
+    <div class="row mt-5">
+      <div class="col-12 text-center">
+        <h2>Our Impact</h2>
+        <div class="row mt-4">
+          <div class="col-md-3">
+            <h3>500K+</h3>
+            <p>Verified Reviews</p>
+          </div>
+          <div class="col-md-3">
+            <h3>8K+</h3>
+            <p>Dealerships Rated</p>
+          </div>
+          <div class="col-md-3">
+            <h3>95%</h3>
+            <p>User Satisfaction</p>
+          </div>
+          <div class="col-md-3">
+            <h3>50</h3>
+            <p>States Covered</p>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
+
+  <!-- New Footer Section -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 mb-4 mb-md-0">
+          <h5>AutoReview</h5>
+          <p>Your trusted source for honest dealership reviews since 2015.</p>
+          <div class="social-links mt-3">
+            <a href="#" class="text-white me-2"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="text-white me-2"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="text-white me-2"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="text-white"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+        <div class="col-md-2 mb-4 mb-md-0">
+          <h5>Quick Links</h5>
+          <ul class="list-unstyled footer-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About Us</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a href="/dealers">Dealerships</a></li>
+          </ul>
+        </div>
+        <div class="col-md-3 mb-4 mb-md-0">
+          <h5>Resources</h5>
+          <ul class="list-unstyled footer-links">
+            <li><a href="#">Buying Guide</a></li>
+            <li><a href="#">Dealer Ratings</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Blog</a></li>
+          </ul>
+        </div>
+        <div class="col-md-3">
+          <h5>Contact Info</h5>
+          <ul class="list-unstyled">
+            <li><i class="fas fa-map-marker-alt me-2"></i> 123 Auto Plaza, Detroit, MI 48201</li>
+            <li><i class="fas fa-phone me-2"></i> (555) 123-4567</li>
+            <li><i class="fas fa-envelope me-2"></i> info@autoreview.com</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom text-center">
+        <p class="mb-0">&copy; 2023 AutoReview. All rights reserved.</p>
+      </div>
     </div>
-    
+  </footer>
 </div>
 
+<!-- Font Awesome for icons (add this before closing body tag) -->
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </html>

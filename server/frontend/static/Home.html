@@ -4,6 +4,51 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="static/style.css">
   <link rel="stylesheet" href="static/bootstrap.min.css">
+  <style>
+    .hero-section {
+      background: linear-gradient(rgba(0, 206, 209, 0.8), rgba(0, 206, 209, 0.2)), 
+                  url('static/car_dealership.jpg') no-repeat center center;
+      background-size: cover;
+      height: 60vh;
+      display: flex;
+      align-items: center;
+      text-align: center;
+      color: white;
+      margin-bottom: 3rem;
+    }
+    .feature-card {
+      transition: transform 0.3s;
+      height: 100%;
+      border: none;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    .feature-card:hover {
+      transform: translateY(-10px);
+    }
+    .feature-icon {
+      font-size: 2.5rem;
+      color: darkturquoise;
+      margin-bottom: 1rem;
+    }
+    .btn-primary {
+      background-color: darkturquoise;
+      border-color: darkturquoise;
+      padding: 0.5rem 2rem;
+    }
+    .btn-primary:hover {
+      background-color: #00b7ba;
+      border-color: #00b7ba;
+    }
+    .testimonial-card {
+      border-left: 4px solid darkturquoise;
+    }
+    .dealership-card {
+      transition: transform 0.3s;
+    }
+    .dealership-card:hover {
+      transform: scale(1.03);
+    }
+  </style>
 <script>
 
 const logout = async (e) => {
@@ -46,7 +91,7 @@ let checkSession = ()=>{
 <body onload="checkSession()">
 <nav class="navbar navbar-expand-lg navbar-light" style="background-color:darkturquoise; height: 1in;">
   <div class="container-fluid">
-    <h2 style="padding-right: 5%;">Dealerships</h2>
+    <h2 style="padding-right: 5%;">AutoReview</h2>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -65,18 +110,143 @@ let checkSession = ()=>{
       <span class="navbar-text">
         <div class="loginlink" id="loginlogout">
         </div>
-        </span>
+      </span>
     </div>
   </div>
 </nav>
-<div style="display: flex;flex-direction: column;">
-<div class="card" style="width: 50%;margin-top: 50px;align-self: center;">
-  <img src="static/car_dealership.jpg" class="card-img-top" alt="...">
-  <div class="banner">
-    <h5>Welcome to our Dealerships!</h5>
-    <a href="/dealers" class="btn" style="background-color: aqua;margin:10px">View Dealerships</a>
+
+<!-- Hero Section -->
+<div class="hero-section">
+  <div class="container">
+    <h1 class="display-4 fw-bold">Find Your Perfect Dealership</h1>
+    <p class="lead">Honest reviews from real customers to help you make the best choice</p>
+    <a href="/dealers" class="btn btn-primary btn-lg mt-3">Browse Dealerships</a>
   </div>
 </div>
+
+<!-- Features Section -->
+<div class="container mb-5">
+  <div class="row g-4 mb-5">
+    <div class="col-md-4">
+      <div class="feature-card card p-4 text-center">
+        <div class="feature-icon">🔍</div>
+        <h3>Transparent Reviews</h3>
+        <p>Read verified customer experiences with dealerships across the country. We never filter or alter reviews.</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="feature-card card p-4 text-center">
+        <div class="feature-icon">⭐</div>
+        <h3>Dealer Ratings</h3>
+        <p>Our comprehensive rating system evaluates pricing, service, and customer satisfaction.</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="feature-card card p-4 text-center">
+        <div class="feature-icon">💬</div>
+        <h3>Community Driven</h3>
+        <p>Join thousands of car buyers sharing their experiences to help others make informed decisions.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Top Dealerships -->
+  <h2 class="text-center mb-4">Featured Dealerships</h2>
+  <div class="row g-4 mb-5">
+    <div class="col-md-4">
+      <div class="dealership-card card">
+        <img src="static/dealer1.jpg" class="card-img-top" alt="Premium Motors">
+        <div class="card-body">
+          <h5 class="card-title">Premium Motors</h5>
+          <p class="card-text">★★★★★ (4.8/5)</p>
+          <p class="card-text">Specializing in luxury vehicles with exceptional customer service.</p>
+          <a href="/dealer/1" class="btn btn-outline-primary">View Reviews</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="dealership-card card">
+        <img src="static/dealer2.jpg" class="card-img-top" alt="Family Auto">
+        <div class="card-body">
+          <h5 class="card-title">Family Auto</h5>
+          <p class="card-text">★★★★☆ (4.5/5)</p>
+          <p class="card-text">Trusted dealership for family vehicles with competitive pricing.</p>
+          <a href="/dealer/2" class="btn btn-outline-primary">View Reviews</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="dealership-card card">
+        <img src="static/dealer3.jpg" class="card-img-top" alt="Eco Drive">
+        <div class="card-body">
+          <h5 class="card-title">Eco Drive</h5>
+          <p class="card-text">★★★★★ (4.9/5)</p>
+          <p class="card-text">Leading in electric and hybrid vehicles with expert staff.</p>
+          <a href="/dealer/3" class="btn btn-outline-primary">View Reviews</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Testimonials -->
+  <h2 class="text-center mb-4">What Our Users Say</h2>
+  <div class="row g-4">
+    <div class="col-md-6">
+      <div class="testimonial-card card p-4">
+        <blockquote class="blockquote mb-0">
+          <p>"AutoReview helped me avoid a terrible dealership experience. The honest reviews saved me thousands!"</p>
+          <footer class="blockquote-footer mt-2">Sarah J., <cite>Verified User</cite></footer>
+        </blockquote>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="testimonial-card card p-4">
+        <blockquote class="blockquote mb-0">
+          <p>"I found the perfect dealership for my needs thanks to the detailed ratings and recent reviews."</p>
+          <footer class="blockquote-footer mt-2">Michael T., <cite>Verified User</cite></footer>
+        </blockquote>
+      </div>
+    </div>
+  </div>
 </div>
+
+<!-- Call to Action -->
+<div class="bg-light py-5">
+  <div class="container text-center">
+    <h2>Ready to Find Your Ideal Dealership?</h2>
+    <p class="lead mb-4">Join thousands of satisfied car buyers who made better decisions with AutoReview</p>
+    <a href="/dealers" class="btn btn-primary btn-lg">Browse All Dealerships</a>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="bg-dark text-white py-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <h5>AutoReview</h5>
+        <p>Your trusted source for honest dealership reviews since 2015.</p>
+      </div>
+      <div class="col-md-4">
+        <h5>Quick Links</h5>
+        <ul class="list-unstyled">
+          <li><a href="/" class="text-white">Home</a></li>
+          <li><a href="/about" class="text-white">About Us</a></li>
+          <li><a href="/contact" class="text-white">Contact</a></li>
+        </ul>
+      </div>
+      <div class="col-md-4">
+        <h5>Connect With Us</h5>
+        <a href="#" class="text-white me-2">Facebook</a>
+        <a href="#" class="text-white me-2">Twitter</a>
+        <a href="#" class="text-white">Instagram</a>
+      </div>
+    </div>
+    <hr>
+    <div class="text-center">
+      <p class="mb-0">© 2023 AutoReview. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
 </body>
 </html>
