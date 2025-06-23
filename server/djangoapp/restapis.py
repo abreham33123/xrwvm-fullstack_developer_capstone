@@ -1,7 +1,9 @@
 # Uncomment the imports below before you add the function code
 import requests
 import os
+import json
 from dotenv import load_dotenv
+from django.conf import settings
 
 load_dotenv()
 
@@ -31,10 +33,7 @@ def analyze_review_sentiments(text):
         print(f"Unexpected {err=}, {type(err)=}")
         print("Network exception occurred")
 
-import requests
-import json
-import os
-from django.conf import settings
+
 
 def post_review(data_dict):
     request_url = backend_url + "/insert_review"

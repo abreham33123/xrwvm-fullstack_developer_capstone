@@ -1,12 +1,8 @@
-# Uncomment the following imports before adding the Model code
 from django.db import models
 from django.utils.timezone import now
 from django.core.validators import MaxValueValidator, MinValueValidator
 
-
-# Create your models here.
-
-# <HINT> Create a Car Make model `class CarMake(models.Model)`:
+# CarMake model
 class CarMake(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
@@ -17,16 +13,11 @@ class CarMake(models.Model):
     def __str__(self):
         return self.name
 
-
-# <HINT> Create a Car Model model `class CarModel(models.Model):`:
+# CarModel model
 class CarModel(models.Model):
-    # Many-To-One relationship to Car Make model
     car_make = models.ForeignKey(CarMake, on_delete=models.CASCADE)
-    
-    # Basic fields
     name = models.CharField(max_length=100)
-    
-    # Type choices
+
     CAR_TYPES = [
         ('SEDAN', 'Sedan'),
         ('SUV', 'SUV'),
@@ -40,8 +31,6 @@ class CarModel(models.Model):
         choices=CAR_TYPES,
         default='SUV'
     )
-    
-    # Year with validation
     year = models.IntegerField(
         default=2023,
         validators=[
@@ -49,8 +38,6 @@ class CarModel(models.Model):
             MaxValueValidator(2023)
         ]
     )
-    
-    # Additional fields
     engine = models.CharField(max_length=50, blank=True)
     horsepower = models.IntegerField(null=True, blank=True)
     mpg = models.IntegerField(null=True, blank=True)
@@ -59,3 +46,15 @@ class CarModel(models.Model):
 
     def __str__(self):
         return f"{self.car_make.name} {self.name} ({self.year})"
+
+# ✅ Move Dealer model outside of CarModel
+class Dealer(models.Model):
+    name = models.CharField(max_length=100)
+    address = models.TextField()
+    city = models.CharField(max_length=50)
+    state = models.CharField(max_length=2)
+    zip_code = models.CharField(max_length=10)
+
+    def __str__(self):
+        return self.name
+

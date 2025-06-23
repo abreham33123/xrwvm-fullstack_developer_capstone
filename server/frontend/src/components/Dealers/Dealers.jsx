@@ -1,96 +1,81 @@
-import React, { useState, useEffect } from 'react';
-import "./Dealers.css";
-import "../assets/style.css";
-import Header from '../Header/Header';
-import review_icon from "../assets/reviewicon.png"
+import React, { useEffect, useState } from "react";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Dealers = () => {
-  const [dealersList, setDealersList] = useState([]);
-  // let [state, setState] = useState("")
-  let [states, setStates] = useState([])
+  const [dealers, setDealers] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  // let root_url = window.location.origin
-  let dealer_url ="/djangoapp/get_dealers";
-  
-  let dealer_url_by_state = "/djangoapp/get_dealers/";
- 
-  const filterDealers = async (state) => {
-    dealer_url_by_state = dealer_url_by_state+state;
-    const res = await fetch(dealer_url_by_state, {
-      method: "GET"
-    });
-    const retobj = await res.json();
-    if(retobj.status === 200) {
-      let state_dealers = Array.from(retobj.dealers)
-      setDealersList(state_dealers)
-    }
-  }
-
-  const get_dealers = async ()=>{
-    const res = await fetch(dealer_url, {
-      method: "GET"
-    });
-    const retobj = await res.json();
-    if(retobj.status === 200) {
-      let all_dealers = Array.from(retobj.dealers)
-      let states = [];
-      all_dealers.forEach((dealer)=>{
-        states.push(dealer.state)
-      });
-
-      setStates(Array.from(new Set(states)))
-      setDealersList(all_dealers)
-    }
-  }
   useEffect(() => {
-    get_dealers();
-  },[]);  
+  fetch('http://127.0.0.1:8000/api/dealers/')  // <- Make sure this matches your Django route
+    .then((res) => res.json())
+    .then((data) => {
+      setDealers(data); // Match this to your Django JSON format
+      setLoading(false);
+    })
+    .catch((err) => {
+      console.error("Error fetching dealers:", err);
+      setLoading(false);
+    });
+}, []);
 
+  return (
+    <>
+      {/* Navigation Bar */}
+      <div style={{
+        backgroundColor: 'turquoise',
+        padding: '10px 20px',
+        display: 'flex',
+        justifyContent: 'space-between'
+      }}>
+        <div>
+          <span style={{ fontWeight: 'bold', fontSize: '20px', marginRight: '20px' }}>AutoReview</span>
+          <a href="/" style={{ marginRight: '15px', color: 'black', textDecoration: 'none' }}>Home</a>
+          <a href="/about" style={{ marginRight: '15px', color: 'black', textDecoration: 'none' }}>About Us</a>
+          <a href="/contact" style={{ color: 'black', textDecoration: 'none' }}>Contact Us</a>
+        </div>
+      </div>
 
-let isLoggedIn = sessionStorage.getItem("username") != null ? true : false;
-return(
-  <div>
-      <Header/>
+      {/* Dealers Table */}
+      <div className="container mt-4">
+        <h2 className="mb-3">Dealerships</h2>
 
-     <table className='table'>
-      <tr>
-      <th>ID</th>
-      <th>Dealer Name</th>
-      <th>City</th>
-      <th>Address</th>
-      <th>Zip</th>
-      <th>
-      <select name="state" id="state" onChange={(e) => filterDealers(e.target.value)}>
-      <option value="" selected disabled hidden>State</option>
-      <option value="All">All States</option>
-      {states.map(state => (
-          <option value={state}>{state}</option>
-      ))}
-      </select>        
+        {loading ? (
+          <p>Loading dealers...</p>
+        ) : dealers.length === 0 ? (
+          <p>No dealers found.</p>
+        ) : (
+          <table className="table table-bordered">
+            <thead className="thead-dark">
+              <tr>
+                <th>ID</th>
+                <th>Dealer Name</th>
+                <th>City</th>
+                <th>Address</th>
+                <th>Zip</th>
+                <th>State</th>
+              </tr>
+            </thead>
+            <tbody>
+              {dealers.map((dealer, index) => (
+                <tr key={index}>
+                  <td>{dealer.id}</td>
+                  <td>
+                    <a href={`/dealer/${dealer.id}`} style={{ color: 'blue' }}>
+                      {dealer.full_name}
+                    </a>
+                  </td>
+                  <td>{dealer.city}</td>
+                  <td>{dealer.address}</td>
+                  <td>{dealer.zip}</td>
+                  <td>{dealer.state}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
+      </div>
+    </>
+  );
+};
 
-      </th>
-      {isLoggedIn ? (
-          <th>Review Dealer</th>
-         ):<></>
-      }
-      </tr>
-     {dealersList.map(dealer => (
-        <tr>
-          <td>{dealer['id']}</td>
-          <td><a href={'/dealer/'+dealer['id']}>{dealer['full_name']}</a></td>
-          <td>{dealer['city']}</td>
-          <td>{dealer['address']}</td>
-          <td>{dealer['zip']}</td>
-          <td>{dealer['state']}</td>
-          {isLoggedIn ? (
-            <td><a href={`/postreview/${dealer['id']}`}><img src={review_icon} className="review_icon" alt="Post Review"/></a></td>
-           ):<></>
-          }
-        </tr>
-      ))}
-     </table>;
-  </div>
-)
-}
-
-export default Dealers
+export default Dealers;
